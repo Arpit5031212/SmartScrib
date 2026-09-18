@@ -1,6 +1,6 @@
 from functools import lru_cache
 from pathlib import Path
-from typing import ClassVar, Literal
+from typing import ClassVar, Literal, Optional
 from pydantic import computed_field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -17,6 +17,13 @@ class Settings(BaseSettings):
     ollama_api_key: str | None = None
     artifacts_dir: Path = BASE_DIR / "storage" / "artifacts"
     chroma_db_path: Path = BASE_DIR / "storage" / "chroma_db"
+    # redis
+    redis_host: str = "localhost"
+    redis_port: int = 6379
+    redis_password: Optional[str] = None
+    redis_db: int = 0
+    session_ttl: int = 3600   # session expiry in seconds
+    redis_max_connections: int = 10
     
     @computed_field
     @property

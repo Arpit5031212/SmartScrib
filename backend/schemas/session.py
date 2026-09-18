@@ -38,6 +38,7 @@ class SessionModel(BaseModel):
     artifacts_ids: list[str] = Field(default_factory=list)
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    current_field: str | None = None
     
 
     

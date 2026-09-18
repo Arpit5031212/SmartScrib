@@ -13,3 +13,8 @@ class ClassifierOutput(BaseModel):
     mode: Mode
     confidence: Confidence
     reasoning: str
+    
+class ClassifierResult(BaseModel):
+    output: ClassifierOutput | None
+    needs_clarification: bool
+    clarification_message: str | None

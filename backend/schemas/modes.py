@@ -259,5 +259,14 @@ MODE_SCHEMAS: dict[Mode, List[FieldDefinitionModel]] = {
     Mode.REPORT: report_fields
 }
 
+MODE_DESCRIPTIONS: dict[Mode, str] = {
+    Mode.MEETING: "User wants to document a meeting - attendees, decisions, action items, notes etc.",
+    Mode.NOTES: "User wants to capture quick notes or thoughts.",
+    Mode.TASKS: "User wants to create or update a task - name, details, assignee, deadline, status etc.",
+    Mode.TIMESHEET: "User wants to log time spent on a task - task name/id, date, hours spent, assignee, status etc.",
+    Mode.REWRITE: "User wants to rewrite some content for a specific audience or tone.",
+    Mode.REPORT: "User wants to create a structured report from unstructured content or an outline."
+}
+
 
 

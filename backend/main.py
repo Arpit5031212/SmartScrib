@@ -2,6 +2,7 @@ import logging
 import uuid
 from fastapi import FastAPI, Request
 from contextlib import asynccontextmanager
+from memory import get_redis_client
 
 from fastapi.responses import JSONResponse
 from core import setup_logging, request_id_var
@@ -19,9 +20,11 @@ async def lifespan(app: FastAPI):
     settings = get_settings()
     setup_logging(environment=settings.environment, debug=settings.debug)
     logger.info(f"Starting {settings.app_name} version {settings.app_version} in {settings.environment} environment")
+    redis_client = get_redis_client()
     yield
     # Perform any necessary cleanup on shutdown
     logger.info("Shutting down application")
+    redis_client.close()
 
 settings = get_settings()
 app = FastAPI(lifespan=lifespan, title=settings.app_name, version=settings.app_version)
